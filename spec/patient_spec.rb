@@ -31,4 +31,10 @@ describe Patient do
       expect(@patient.birthday).to eq "1801-1-23"
     end
   end
+
+  describe '.all' do
+    it 'returns an empty array at first' do
+      expect(Patient.all).to eq []
+    end
+  end
 end
