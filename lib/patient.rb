@@ -1,6 +1,6 @@
 class Patient
 
-  attr_reader :id, :birthday, :doctor_id, :name
+  attr_accessor :id, :birthday, :doctor_id, :name
 
   def initialize(attributes)
     @birthday  = attributes.fetch :birthday
@@ -32,5 +32,17 @@ class Patient
     self.name == patient.name &&
     self.birthday == patient.birthday &&
     self.id == patient.id && self.doctor_id == patient.doctor_id
+  end
+
+  def doc
+    result = DB.exec("SELECT * FROM doctors WHERE id = '#{self.doctor_id}';")
+    physicion = nil
+    result.each do |doc|
+      name = doc['name']
+      id = doc['id']
+      specialty_id = doc['specialty_id']
+      physicion = Doctor.new({ name: name, id: id, specialty_id: specialty_id })
+    end
+    physicion
   end
 end
