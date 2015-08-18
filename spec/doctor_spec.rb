@@ -28,7 +28,7 @@ describe Doctor do
 
   describe '#specialty_id' do
     it 'returns the specialty id of the doctor' do
-      expect(@doctor.specialty_id).to eq 3
+      expect(@doctor.specialty_id).to eq  3
     end
   end
 
