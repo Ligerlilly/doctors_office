@@ -4,7 +4,7 @@ class Specialty
 
   def initialize(attributes)
     @id         = attributes.fetch(:id).to_i
-    @speciality = attributes.fetch :specialty
+    @specialty = attributes.fetch :specialty
   end
 
 

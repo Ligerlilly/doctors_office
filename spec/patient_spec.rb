@@ -60,7 +60,12 @@ describe Patient do
     end
   end
 
-
+  describe '.find' do
+    it 'should return a patient by its id' do
+      @patient.save
+      expect(Patient.find(@patient.id)).to eq @patient
+    end
+  end
 
 
 

@@ -1,3 +1,5 @@
+require 'pry'
+
 class Doctor
   attr_reader :name, :id, :specialty_id
 

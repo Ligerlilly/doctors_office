@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>doctors</title>
+		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+		<link rel='stylesheet' href='main.css'>
+	</head>
+	<body>
+		<div class='container'>
+			<form action="/doctors" method="post">
+  <div class='form-group'>
+    <label for="name">Enter Doctor Name:</label>
+    <input type="text" name="name">
+    <label for="specialty">Select a specialty</label>
+    <select name="specialty">
+      <option value='1'>Cardiac</option>
+      <option value='2'>Foot</option>
+      <option value='3'>Face</option>
+    </select>
+  </div>
+  <button type='submit'>Submit</button>
+</form>
+
+			<a href="/">Home</a>
+		</div>
+
+	</body>
+</html>
