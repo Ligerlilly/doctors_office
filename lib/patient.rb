@@ -4,8 +4,8 @@ class Patient
 
   def initialize(attributes)
     @birthday  = attributes.fetch :birthday
-    @id        = attributes.fetch(:id)
-    @doctor_id = attributes.fetch :doctor_id
+    @id        = attributes.fetch(:id).to_i
+    @doctor_id = attributes.fetch(:doctor_id).to_i
     @name      = attributes.fetch :name
   end
 
@@ -20,5 +20,17 @@ class Patient
       pats.push(Patient.new({ name: name, id: id, doctor_id: doctor_id, birthday: birthday }))
     end
     pats
+  end
+
+
+  def save
+    result = DB.exec("INSERT INTO patients (birthday, doctor_id, name) VALUES ('#{self.birthday}', '#{self.doctor_id}', '#{self.name}') RETURNING id;")
+    @id    = result.first.fetch('id').to_i
+  end
+
+  def ==(patient)
+    self.name == patient.name &&
+    self.birthday == patient.birthday &&
+    self.id == patient.id && self.doctor_id == patient.doctor_id
   end
 end

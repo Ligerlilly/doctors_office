@@ -4,13 +4,13 @@ require 'spec_helper'
 describe Patient do
 
   before do
-    @patient = Patient.new({id: nil, name: "Col. Sanders", doctor_id: 3, birthday: '1801-1-23' })
+    @patient = Patient.new({id: nil, name: "Col. Sanders", doctor_id: 3, birthday: '1801-01-23' })
   end
 
 
   describe '#id' do
     it 'should return the id of the patient' do
-      expect(@patient.id).to eq nil
+      expect(@patient.id).to eq 0
     end
   end
 
@@ -28,13 +28,27 @@ describe Patient do
 
   describe '#birthday' do
     it 'should return the birthday of the patient' do
-      expect(@patient.birthday).to eq "1801-1-23"
+      expect(@patient.birthday).to eq "1801-01-23"
     end
   end
 
   describe '.all' do
     it 'returns an empty array at first' do
       expect(Patient.all).to eq []
+    end
+  end
+
+  describe '#save' do
+    it 'should save the patient to the db' do
+      @patient.save
+      expect(Patient.all).to eq [@patient]
+    end
+  end
+
+  describe '#==' do
+    it 'should return true when a patients attributes match anothers' do
+      patient2 = Patient.new({id: nil, name: "Col. Sanders", doctor_id: 3, birthday: '1801-01-23' })
+      expect(patient2).to eq @patient
     end
   end
 end
