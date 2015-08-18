@@ -7,7 +7,6 @@ class Doctor
     @specialty_id = attributes[:specialty_id].to_i
   end
 
-
   def self.all
     doctors          = []
     returned_doctors = DB.exec("SELECT * FROM doctors;")
@@ -20,17 +19,29 @@ class Doctor
     doctors
   end
 
-
   def save
     result = DB.exec("INSERT INTO doctors (name, specialty_id) VALUES ('#{self.name}', #{self.specialty_id}) RETURNING id;")
     @id    = result.first.fetch 'id'
   end
-
 
   def == (another_doctor)
     another_doctor.id           == self.id &&
     another_doctor.name         == self.name &&
     another_doctor.specialty_id == self.specialty_id
   end
+
+  def self.find(doc_id)
+    found_doctor = nil
+    returned_doctors = DB.exec("SELECT * FROM doctors WHERE id = #{doc_id};")
+    returned_doctors.each do |doc|
+      if doc['id'] == doc_id
+        found_doctor = Doctor.new({ name: doc['name'], specialty_id: doc['specialty_id'], id: doc['id'] })
+      end
+    end
+
+    found_doctor
+  end
+
+
 
 end

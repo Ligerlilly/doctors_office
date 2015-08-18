@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Doctor do
 
   before do
-    @doctor =  Doctor.new({name: "Dr. Nick", specialty_id: 3, id: nil})
+    @doctor =  Doctor.new({name: "Dr. Nick", specialty_id: '3', id: nil})
   end
 
   describe '#name' do
@@ -31,4 +31,12 @@ describe Doctor do
       expect(@doctor).to eq doctor2
     end
   end
+
+  describe '.find' do
+    it 'should return a doctor by its id' do
+      @doctor.save
+      expect(Doctor.find(@doctor.id)).to eq @doctor
+    end
+  end
+
 end
