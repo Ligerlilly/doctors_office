@@ -1,6 +1,7 @@
 require 'rspec'
 require './lib/doctor'
 require './lib/patient'
+require './lib/specialty'
 require 'pg'
 
 DB = PG.connect({ dbname: 'doctors_test' })
