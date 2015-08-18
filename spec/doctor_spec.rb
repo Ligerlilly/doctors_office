@@ -18,6 +18,21 @@ describe Doctor do
     end
   end
 
+
+  describe '#id' do
+    it 'returns the id of the doctor' do
+      expect(@doctor.id).to eq nil
+    end
+  end
+
+
+  describe '#specialty_id' do
+    it 'returns the specialty id of the doctor' do
+      expect(@doctor.specialty_id).to eq 3
+    end
+  end
+
+
   describe('#save') do
     it 'should save the doctor to the database' do
       @doctor.save

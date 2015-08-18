@@ -38,10 +38,7 @@ class Doctor
         found_doctor = Doctor.new({ name: doc['name'], specialty_id: doc['specialty_id'], id: doc['id'] })
       end
     end
-
     found_doctor
   end
-
-
 
 end
